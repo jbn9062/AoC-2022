@@ -1,4 +1,8 @@
-# Programming with Python template
+---
+name: Jibin Varghese
+mat: 7015777
+aocname: Jibin varghese
+aocnumber: 2333772
+---
 
-Jibin Varghese
-7015777
+# Programming with Python template
