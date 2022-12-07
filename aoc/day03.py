@@ -16,7 +16,7 @@ for i in bag:
 
 x = Counter(common)
 print("Common: ", common)
-print("X: ",x)
+print("X: ", x)
 
 lowerAlpa = [str(i) for i in string.ascii_lowercase]
 upperAlpha = [str(i) for i in string.ascii_uppercase]
