@@ -1,4 +1,3 @@
-import itertools
 with open("day06.txt","r") as f:
     inpt = f.readline().strip()
 input = []
