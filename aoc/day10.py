@@ -14,13 +14,25 @@ cycles = [20, 60, 100, 140, 180, 220] #  @ 20: x = 21 st = 420
 x = 1
 cycle = 0
 signalStrength = 0
-
+draw = ""
+screen = []
 for i in d_list:
     if 'noop' in i.keys():
         cycle += 1
+
+        if len(draw) in range(x-1, x+2):
+            draw += '#'
+        else:
+            draw += '.'
+
+
+        if len(draw) == 40:
+                screen.append(draw)
+                draw = ""
+
         if cycle in cycles:
             signalStrength += (x * cycle)
-            print(f"signal strength: {signalStrength} in the {cycle}th cycle")
+            #print(f"signal strength: {signalStrength} in the {cycle}th cycle")
 
 
 
@@ -28,12 +40,17 @@ for i in d_list:
         c = 2
         while c > 0:
             cycle += 1
-
+            if len(draw) in range(x-1, x+2):
+                draw += '#'
+            else:
+                draw += '.'
+            if len(draw) == 40:
+                screen.append(draw)
+                draw = ""
             if cycle in cycles:
                 signalStrength += (x * cycle)
-                print(f"signal strength: {signalStrength} in the {cycle}th cycle")
+                #print(f"signal strength: {signalStrength} in the {cycle}th cycle")
             c = c - 1
         x += i['addx']
-print(x)
-print(cycle)
-print(signalStrength)
+print("Part 1 ", signalStrength) #      Part1
+print(*screen, sep="\n") #   Part2
