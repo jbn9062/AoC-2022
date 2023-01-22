@@ -139,7 +139,7 @@ def part1():
 
     return (sorted(counts)[-1] * sorted(counts)[-2])
 
-#print(part1())
+print(part1())
 
 def part2():
     counts = [0, 0, 0, 0, 0, 0, 0, 0]
