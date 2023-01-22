@@ -1,6 +1,6 @@
 with open("day09.txt", "rt") as f:
     data = [i.split() for i in f.readlines()]
-
+print(data)
 direction = [i[0] for i in data]
 moves = [int(i[1]) for i in data]
 data = list(zip(direction, moves))

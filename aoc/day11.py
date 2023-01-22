@@ -31,8 +31,6 @@ class Monkey:
         if result == True:
             pass
 
-    def __repr__(self):
-        pass
 
 
 with open("day11.txt", "rt") as f:
@@ -68,7 +66,7 @@ m7 = Monkey(monk7)
 
 def part1():
     counts = [0, 0, 0, 0, 0, 0, 0,0]
-    monkeys = [m0, m1, m2, m3,m4,m5,m6,m7]
+    monkeys = [m0, m1, m2, m3, m4, m5, m6, m7]
     for round in range(20):
 
         for i in range(len(monkeys)):
@@ -141,4 +139,71 @@ def part1():
 
     return (sorted(counts)[-1] * sorted(counts)[-2])
 
-print(part1())
+#print(part1())
+
+def part2():
+    counts = [0, 0, 0, 0, 0, 0, 0, 0]
+    monkeys = [m0, m1, m2, m3, m4, m5, m6, m7]
+    for round in range(10000):
+
+        for i in range(len(monkeys)):
+
+            for j in range(len(monkeys[i].mk_st)):
+                counts[i] += 1
+
+                if '*' in monkeys[i].mk_oper and type(monkeys[i].mk_oper[-1]) == int:
+
+                    monkeys[i].mk_st[0] = monkeys[i].mk_st[0] * monkeys[i].mk_oper[-1]
+                    #monkeys[i].mk_st[0] = monkeys[i].mk_st[0] // 3
+
+                    if monkeys[i].test(monkeys[i].mk_st[0]) == True:
+                        throw = monkeys[i].mk_st.pop(0)
+                        monkeys[monkeys[i].true[-1]].mk_st.append(throw)
+
+
+                    elif monkeys[i].test(monkeys[i].mk_st[0]) == False:
+                        throw = monkeys[i].mk_st.pop(0)
+                        monkeys[monkeys[i].false[-1]].mk_st.append(throw)
+
+                if '*' in monkeys[i].mk_oper and type(monkeys[i].mk_oper[-1]) == str:
+                    monkeys[i].mk_st[0] = monkeys[i].mk_st[0] * monkeys[i].mk_st[0]
+                    #monkeys[i].mk_st[0] = monkeys[i].mk_st[0] // 3
+
+                    if monkeys[i].test(monkeys[i].mk_st[0]) == True:
+                        throw = monkeys[i].mk_st.pop(0)
+                        monkeys[monkeys[i].true[-1]].mk_st.append(throw)
+
+
+                    elif monkeys[i].test(monkeys[i].mk_st[0]) == False:
+                        throw = monkeys[i].mk_st.pop(0)
+                        monkeys[monkeys[i].false[-1]].mk_st.append(throw)
+
+                if '+' in monkeys[i].mk_oper and type(monkeys[i].mk_oper[-1]) == int:
+                    monkeys[i].mk_st[0] = monkeys[i].mk_st[0] + monkeys[i].mk_oper[-1]
+                    #monkeys[i].mk_st[0] = monkeys[i].mk_st[0] // 3
+
+                    if monkeys[i].test(monkeys[i].mk_st[0]) == True:
+                        throw = monkeys[i].mk_st.pop(0)
+                        monkeys[monkeys[i].true[-1]].mk_st.append(throw)
+
+
+
+                    elif monkeys[i].test(monkeys[i].mk_st[0]) == False:
+                        throw = monkeys[i].mk_st.pop(0)
+                        monkeys[monkeys[i].false[-1]].mk_st.append(throw)
+
+                if '+' in monkeys[i].mk_oper and type(monkeys[i].mk_oper[-1]) == str:
+                    monkeys[i].mk_st[j] = monkeys[i].mk_st[j] + monkeys[i].mk_st[j]
+                    #monkeys[i].mk_st[j] = monkeys[i].mk_st[j] // 3
+
+                    if monkeys[i].test(monkeys[i].mk_st[0]) == True:
+                        throw = monkeys[i].mk_st.pop(0)
+                        j = len(monkeys[i].mk_st)
+                        monkeys[monkeys[i].true[-1]].mk_st.append(throw)
+
+
+                    elif monkeys[i].test(monkeys[i].mk_st[0]) == False:
+                        throw = monkeys[i].mk_st.pop(0)
+                        j = len(monkeys[i].mk_st)
+                        monkeys[monkeys[i].false[-1]].mk_st.append(throw)
+    return (sorted(counts)[-1] * sorted(counts)[-2])
