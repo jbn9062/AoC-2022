@@ -8,7 +8,6 @@ data = list(zip(direction, moves))
 knots_p1 = [[0, 0], [0, 0]]
 knots_p2 = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
 
-
 side = {'R': (1, 0), 'L': (-1, 0), 'U': (0, 1), 'D': (0, -1)}
 
 tail_mvs = [[0, 0]]
@@ -51,6 +50,24 @@ def make_moves(knots):
     return len(tail_positions)
 
 
+def make_moves2(knotss):
+    tail_mvs = [[0, 0]]
+    for i in data:
+        direction = i[0]
+        step = int(i[1])
+        move_to = side[direction]
+        for k in range(step):
+            knotss[-1][0] += move_to[0]
+            knotss[-1][1] += move_to[1]
+            knotss = tail_moves(knotss)
+
+            tail_mvs.append(knotss[0].copy())
+
+    tail_positions = set(tuple(i) for i in tail_mvs)
+    return len(tail_positions)
+
+    return len(tail_positions)
 
 print("Part 1: ", make_moves(knots_p1))
-print("Part 1: ", make_moves(knots_p2))
+print("Part 2: ", make_moves2(knots_p2))
+
